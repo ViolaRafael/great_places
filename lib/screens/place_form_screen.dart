@@ -42,7 +42,6 @@ class _PLaceFormScreenState extends State<PLaceFormScreen> {
               ),
             ),
           ),
-          Text('teste'),
           ElevatedButton.icon(
             onPressed: _submitForm,
             icon: const Icon(Icons.add),
