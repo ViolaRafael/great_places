@@ -11,14 +11,18 @@ class PlacesListScreen extends StatelessWidget {
         title: const Text('Meus Lugares'),
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.PLACE_FORM);
-            },
             icon: const Icon(Icons.add),
-          ),
+            onPressed: () {
+              Navigator.of(context).pushNamed(AppRoutes.placeForm);
+            },
+          )
         ],
       ),
-      body: const Center(),
+      body: Center(
+        child: CircularProgressIndicator(
+          color: Theme.of(context).colorScheme.secondary,
+        ),
+      ),
     );
   }
 }

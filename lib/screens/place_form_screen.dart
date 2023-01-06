@@ -1,15 +1,18 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:great_places/widgets/image_input.dart';
 
-class PLaceFormScreen extends StatefulWidget {
-  const PLaceFormScreen({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:great_places/providers/great_places.dart';
+import 'package:great_places/widgets/image_input.dart';
+import 'package:provider/provider.dart';
+
+class PlaceFormScreen extends StatefulWidget {
+  const PlaceFormScreen({Key? key}) : super(key: key);
 
   @override
-  State<PLaceFormScreen> createState() => _PLaceFormScreenState();
+  State<PlaceFormScreen> createState() => _PlaceFormScreenState();
 }
 
-class _PLaceFormScreenState extends State<PLaceFormScreen> {
+class _PlaceFormScreenState extends State<PlaceFormScreen> {
   final _titleController = TextEditingController();
   File? _pickedImage;
 
@@ -17,7 +20,18 @@ class _PLaceFormScreenState extends State<PLaceFormScreen> {
     _pickedImage = pickedImage;
   }
 
-  void _submitForm() {}
+  void _submitForm() {
+    if (_titleController.text.isEmpty || _pickedImage == null) {
+      return;
+    }
+
+    Provider.of<GreatPlaces>(context, listen: false).addPlace(
+      _titleController.text,
+      _pickedImage,
+    );
+
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +55,13 @@ class _PLaceFormScreenState extends State<PLaceFormScreen> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    ImageInput(onSelectImage: _selectImage),
+                    ImageInput(_selectImage),
                   ],
                 ),
               ),
             ),
           ),
           ElevatedButton.icon(
-            onPressed: _submitForm,
             icon: const Icon(Icons.add),
             label: const Text('Adicionar'),
             style: ElevatedButton.styleFrom(
@@ -57,6 +70,7 @@ class _PLaceFormScreenState extends State<PLaceFormScreen> {
               elevation: 0,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
+            onPressed: _submitForm,
           ),
         ],
       ),
