@@ -10,7 +10,7 @@ class GreatPlaces with ChangeNotifier {
     return [..._items];
   }
 
-  int get itemsCounter {
+  int get itemsCount {
     return _items.length;
   }
 
