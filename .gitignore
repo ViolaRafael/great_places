@@ -51,3 +51,4 @@ local.properties
 lib/google_key.dart
 android/app/src/main/res/values/configuration.xml
 android/app/src/main/res/values-night/configuration.xml
+ios/Runner/ApiKey.plist
