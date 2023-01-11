@@ -9,6 +9,7 @@ import '../models/place.dart';
 class GreatPlaces with ChangeNotifier {
   List<Place> _items = [];
 
+  /// loads places from database
   Future<void> loadPlaces() async {
     final dataList = await DbUtil.getData('places');
     _items = dataList
@@ -58,6 +59,7 @@ class GreatPlaces with ChangeNotifier {
       image: image,
     );
 
+    /// saves place on database
     _items.add(newPlace);
     DbUtil.insert('places', {
       'id': newPlace.id,

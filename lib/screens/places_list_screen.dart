@@ -29,8 +29,8 @@ class PlacesListScreen extends StatelessWidget {
                 child: const Center(
                   child: Text('Nenhum local cadastrado!'),
                 ),
-                builder: (ctx, greatPlaces, ch) => greatPlaces.itemsCount == 0
-                    ? ch!
+                builder: (ctx, greatPlaces, child) => greatPlaces.itemsCount == 0
+                    ? child!
                     : ListView.builder(
                         itemCount: greatPlaces.itemsCount,
                         itemBuilder: (ctx, i) => ListTile(

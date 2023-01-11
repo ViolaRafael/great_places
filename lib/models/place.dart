@@ -13,6 +13,7 @@ class PlaceLocation {
     this.address,
   });
 
+  /// used to translate objects into LatLng
   LatLng toLatLng() {
     return LatLng(this.latitude, this.longitude);
   }
